@@ -1,2 +1,3 @@
 <?php
 
+$app = new Application();

@@ -1,0 +1,19 @@
+{
+    "name": "lb/phpmvc-framework",
+    "description": "phpmvc-framework",
+    "type": "project",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Lb\\PhpmvcFramework\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "JLB-101",
+            "email": "juliaolangassitela@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {}
+}
