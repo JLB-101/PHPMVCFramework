@@ -1,18 +1,26 @@
 <?php
 
-namespace core;
+namespace app\core;
 
 class Application
 {
    
     public Router $router;
     public Request $request;
-    public Response $response;
+    
 
-    // 
+    // construtor da classe Application 
     public function __construct()
     {
-        $this->router = new Router();
+        $this->request = new Request();
+        $this->router = new Router($this->request);
+        
+    }
+
+    // metodo para rodar a aplicacao
+    public function run()
+    {
+      $this->router->resolve();
     }
 
 }
