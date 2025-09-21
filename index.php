@@ -1,7 +1,12 @@
 <?php
 
+// exibição de erros para depuração
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 // carrega o autoload do composer
-require __DIR__ . '/vendor/autoload.php';
+require_once __DIR__ . '/vendor/autoload.php';
 
 // importa a classe Applicacao do namespace core
 use app\core\Application;
@@ -13,14 +18,6 @@ use app\core\Application;
 $app = new Application();
 
 // teste de rota
-
-$app-> router->get('/home', function() {
-    return 'Home Page';
-});
-
-$app-> router->get('', function() {
-    return 'About Us';
-});
 
 $app->router->get('/', function() {
     return 'Hello World';
