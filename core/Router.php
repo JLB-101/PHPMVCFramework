@@ -35,18 +35,39 @@ class Router
          * 5. Se nao existir, retorna uma mensagem de erro 404
          */
         $path = $this->request->getPath();
+        /**Usar para revisao: *UPR */
+        // var_dump($path);
         $method = $this->request->getMethod();
         $callback = $this->routes[$method][$path] ?? false;
 
-        // se o callback for uma funcao anonima, chama ela e retorna a resposta "Nao encontrado"
+        // se o callback for uma funcao anonima/ caso nao encontrar, chama ela e retorna a resposta "Nao encontrado"
         if ($callback === false) {
             http_response_code(404);
-            echo "Not Found";
-            var_dump($_SERVER);
+            echo "Not Found 404";
+            /***UPR 
+             * // echo "<pre>";
+             * // var_dump($_SERVER);
+             * // echo "</pre>";
+            */
             exit;// termina a execucao do script
         }
-        echo call_user_func($callback);
+
        
+        /**
+         * Se o callback for uma string, considera ela como o nome de uma view e chama o metodo renderView para renderizar a view 
+         */
+        if (is_string($callback)) {
+            return $this->renderView($callback);
+        }
+        // se o callback for uma funcao anonima, chama ela e retorna a resposta
+        return call_user_func($callback);
     }
+
+    public function renderView()
+    {
+        // inclui o arquivo da view e retorna o conteudo dela
+        include_once __DIR__ . "/../views/$view.php";
+    }
+
 }
 

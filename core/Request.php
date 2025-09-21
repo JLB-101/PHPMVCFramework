@@ -14,12 +14,14 @@ class Request
          */
     
         $path = $_SERVER['REQUEST_URI'] ?? '/';
+        // procura a posicao do caractere '?' na URL
         $position = strpos($path, '?');
 
         // se houver query string na URL, remove ela do path 
         if ($position === false) {
             return $path;
         }
+        // retorna o path ate a posicao do caractere '?'
         return substr($path, 0, $position);
     }
 
