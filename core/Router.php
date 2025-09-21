@@ -20,7 +20,8 @@ class Router
     // Guarda as rotas e callbacks(sao funcoes anonimas) associadas a elas para o metodo GET da requisicao HTTP.
     public function get($path, $callback)
     {
-        $this->routes[$path] = $callback;
+        // armazena o callback associado a rota e metodo HTTP GET no array de rotas 'get'
+        $this->routes['get'][$path] = $callback;
     }
 
     // resolve a rota atual e chama o callback associado a ela.
@@ -41,6 +42,7 @@ class Router
         if ($callback === false) {
             http_response_code(404);
             echo "Not Found";
+            var_dump($_SERVER);
             exit;// termina a execucao do script
         }
         echo call_user_func($callback);
